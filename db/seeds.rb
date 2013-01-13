@@ -19,10 +19,12 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup,
                                     :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
+user.confirm!
 
 user2 = User.find_or_create_by_email :name => 'Second User',
-                                     :email => 'user2@example.com',
-                                     :password => 'please',
-                                     :password_confirmation => 'please'
+                                     :email => 'user@example.com',
+                                     :password => 'foobar',
+                                     :password_confirmation => 'foobar'
 puts 'user: ' << user2.name
 user2.add_role :VIP
+user2.confirm!
