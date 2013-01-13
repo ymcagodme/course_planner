@@ -34,4 +34,19 @@ CoursePlanner::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Setting Gmail
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "huangsoon.com.tw",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"]
+  }
+
+  # Set Default URL for mailer
+  config.action_mailer.default_url_options = { :host => 'course_planner.dev' }
+
 end

@@ -1,4 +1,14 @@
 CoursePlanner::Application.routes.draw do
+  authenticated :user do
+    # Placeholder for changing the index for signed-in users
+    root :to => 'home#index'
+  end
+  root :to => "home#index"
+
+  devise_for :users
+  resources :users
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

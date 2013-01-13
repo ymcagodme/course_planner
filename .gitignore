@@ -20,3 +20,6 @@ doc/
 .DS_Store
 .idea
 webrat.log
+
+# Ignore application configuration
+/config/application.yml
