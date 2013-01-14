@@ -1,0 +1,17 @@
+<tr class="course">
+  <td><%= link_to course.number, course %></td>
+  <td><%= course.title %></td>
+  <td><%= course.instructor %></td>
+  <td><%= course.status %></td>
+  <td><%= course.available_seats %></td>
+  <td><%= course.updated_at.to_time %></td>
+  <td><%= link_to 'Add', '#', :class => 'btn btn-mini' %></td>
+  <% if current_user && current_user.has_role?(:admin) %>
+    <td><%= link_to 'Edit', edit_course_path(course),
+                            :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Delete', course_path(course),
+                              :method => "destroy",
+                              :confirm => "Are you sure?",
+                              :class => 'btn btn-mini' %></td>
+  <% end %>
+</tr>

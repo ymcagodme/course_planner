@@ -5,7 +5,8 @@ namespace :db do
     Rake::Task['db:reset'].invoke
     make_roles
     make_users
-    Rake::Task['db:test:prepare'].invoke
+    make_courses
+    Rake::Task['db:test:prepare']
     FileUtils.touch "#{Rails.root}/tmp/restart.txt"
   end
 end
@@ -30,5 +31,26 @@ def make_users
     user.add_role :user
     user.save!
     puts 'Add user: ' << user.name
+  end
+end
+
+STATUS = %w[OPEN CLOSE TENTATIVE WAITLIST CANCELLED]
+def make_courses
+  100.times do |n|
+    number = (10000 + 100 * n + Random.rand(0..99)).to_s
+    title = Faker::Lorem.sentence(3)
+    instructor = Faker::Name.name
+    status = STATUS[Random.rand(0..4)]
+    available_seats = Random.rand(1..30)
+    term = 1131
+    Course.create!(
+      number: number,
+      title:  title,
+      instructor: instructor,
+      status: status,
+      available_seats: available_seats,
+      term: term
+    )
+    puts "Add course: #{number} (#{title})"
   end
 end

@@ -35,4 +35,19 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Include Devise module
+  config.include Devise::TestHelpers, :type => :controller
+
+  # Factory Girl
+  RSpec.configure do |config|
+    config.include FactoryGirl::Syntax::Methods
+  end
 end
+
+def test_sign_in(user)
+  @request.env["devise.mapping"] = Devise.mappings[:user]
+  sign_in user
+end
+
+
