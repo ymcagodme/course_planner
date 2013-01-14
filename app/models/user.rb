@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
-  validates :name, :presence => true
+  validates :name, :presence => true,
+                   :length => { :minimum => 2, :maximum => 50 }
   validates_uniqueness_of :name, :email, :case_sensitive => true
 end
