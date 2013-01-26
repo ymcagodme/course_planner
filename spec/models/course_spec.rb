@@ -7,7 +7,7 @@
 #  title           :string(255)
 #  instructor      :string(255)
 #  status          :string(255)
-#  available_seats :integer
+#  available_seats :integer          default(0)
 #  term            :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -16,7 +16,21 @@
 require 'spec_helper'
 
 describe Course do
+  describe "Get all courses" do
+    before(:each) do
+      @course = FactoryGirl.create(:course)
+      @course1 = FactoryGirl.create(:course,
+                                    :number => FactoryGirl.generate(:number), 
+                                    :updated_at => Time.now + 2.days)
+      @course2 = FactoryGirl.create(:course,
+                                    :number => FactoryGirl.generate(:number), 
+                                    :updated_at => Time.now + 23.days)
+    end
 
+    it "should have the right order by updated_at with DESC" do
+      Course.all.should == [@course2, @course1, @course]
+    end
+  end
 
   describe "Create" do
     before(:each) do
@@ -39,8 +53,11 @@ describe Course do
 
     describe "success" do
       it "should create a course with valid attributes" do
-        course = Course.new(@attr)
-        course.should be_valid
+        lambda do
+          course = Course.new(@attr)
+          course.should be_valid
+          course.save!
+        end.should change(Course, :count).by(1)
       end
     end
   end

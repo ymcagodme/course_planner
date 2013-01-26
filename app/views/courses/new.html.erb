@@ -1,12 +1,5 @@
 <h3>Add a new course</h3>
 <%= simple_form_for @course, :html => {:class => 'form-horizontal'} do |f|  %>
-  <%= f.error_notification %>
-  <%= f.input :number, :autofocus => true, :required => true %>
-  <%= f.input :title, :required => true %>
-  <%= f.input :instructor %>
-  <%= f.input :status,
-              :collection => %w[OPEN CLOSE TENTATIVE WAITLIST CANCELLED] %>
-  <%= f.input :available_seats %>
-  <%= f.input :term %>
-  <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <%= f.button :submit, 'Create', :class => 'btn-primary' %>
 <% end %>

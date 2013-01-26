@@ -7,7 +7,7 @@
 #  title           :string(255)
 #  instructor      :string(255)
 #  status          :string(255)
-#  available_seats :integer
+#  available_seats :integer          default(0)
 #  term            :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -19,4 +19,6 @@ class Course < ActiveRecord::Base
   validates_presence_of :number, :title, :status
   validates_numericality_of :number
   validates_uniqueness_of :number
+
+  default_scope :order => 'courses.updated_at DESC'
 end

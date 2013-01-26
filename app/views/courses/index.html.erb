@@ -1,5 +1,10 @@
+<% title "All Courses" %>
+
 <h3>Courses</h3>
-<div class="span8">
+<% if current_user && current_user.has_role?(:admin) %>
+  <%= link_to 'Add a new course', new_course_path, :class => 'btn' %>
+<% end %>
+<div>
 <%= will_paginate %>
 <table class="table table-condensed">
     <thead>

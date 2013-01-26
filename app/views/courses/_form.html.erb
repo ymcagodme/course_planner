@@ -1,0 +1,8 @@
+<%= f.error_notification %>
+<%= f.input :number, :autofocus => true, :required => true %>
+<%= f.input :title, :required => true %>
+<%= f.input :instructor %>
+<%= f.input :status,
+            :collection => %w[OPEN CLOSE TENTATIVE WAITLIST CANCELLED] %>
+<%= f.input :available_seats %>
+<%= f.input :term %>
