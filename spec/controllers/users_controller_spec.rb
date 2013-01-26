@@ -31,7 +31,7 @@ describe UsersController do
     before(:each) do
       @user = FactoryGirl.create(:user)
       @course = FactoryGirl.create(:course)
-      @relationship = UserCourseship.create!({ user_id: @user.id, course_id: @course })
+      @relationship = UserCourseship.create!({ user_id: @user.id, course_id: @course.id })
     end
 
     it "should delete the relationship if the user is deleted" do
