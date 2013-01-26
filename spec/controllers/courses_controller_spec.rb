@@ -234,7 +234,7 @@ describe CoursesController do
 
         it "should have a flash message" do
           post :create, :course => @attr
-          flash[:success].should =~ /created!/i
+          flash[:success].should =~ /\d+.+is.+created!/i
         end
       end
     end
@@ -314,7 +314,7 @@ describe CoursesController do
 
         it "should have a flash message" do
           put :update, :id => @course, :course => {:number => '12349'}
-          flash[:success].should =~ /updated/i
+          flash[:success].should =~ /\d+.+is.+updated/i
         end
       end
     end
@@ -350,7 +350,7 @@ describe CoursesController do
 
       it "should have a flash message" do
         delete :destroy, :id => @course
-        flash[:success].should =~ /deleted!/i
+        flash[:success].should =~ /\d+.+is.+deleted!/i
       end
     end
   end

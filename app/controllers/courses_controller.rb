@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
     authorize! :create, @course
     @course = Course.new(params[:course])
     if @course.save
-      flash[:success] = 'The course is created!'
+      flash[:success] = "The course ##{@course.number} is created!"
       redirect_to @course
     else
       render :new
@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
     authorize! :update, @course
     @course = Course.find(params[:id])
     if @course.update_attributes(params[:course])
-      flash[:success] = 'The course is updated!'
+      flash[:success] = "The course ##{@course.number} is updated!"
       redirect_to @course
     else
       render :edit
@@ -45,7 +45,7 @@ class CoursesController < ApplicationController
     authorize! :destroy, @course
     @course = Course.find(params[:id])
     @course.destroy
-    flash[:success] = 'The course is deleted!'
+    flash[:success] = "The course ##{@course.number} is deleted!"
     redirect_to courses_path
   end
 end
