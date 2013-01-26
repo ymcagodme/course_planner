@@ -41,4 +41,16 @@ class User < ActiveRecord::Base
   validates :name, :presence => true,
                    :length => { :minimum => 2, :maximum => 50 }
   validates_uniqueness_of :name, :email, :case_sensitive => true
+
+  def follow!(course)
+    user_courseships.create!(:course_id => course.id)
+  end
+
+  def following?(course)
+    user_courseships.find_by_course_id(course)
+  end
+
+  def unfollow!(course)
+    user_courseships.find_by_course_id(course).destroy
+  end
 end
