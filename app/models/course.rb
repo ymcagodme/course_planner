@@ -14,6 +14,9 @@
 #
 
 class Course < ActiveRecord::Base
+  has_many :user_courseships, :dependent => :delete_all
+  has_many :users, :through => :user_courseships 
+
   attr_accessible :number, :title, :instructor, :status, :available_seats, :term
 
   validates_presence_of :number, :title, :status

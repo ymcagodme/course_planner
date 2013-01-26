@@ -66,4 +66,25 @@ describe User do
     end
   end
 
+  describe "relationship with courses" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      @course1 = FactoryGirl.create(:course,
+                                    :number => FactoryGirl.generate(:number))
+      @course2 = FactoryGirl.create(:course,
+                                    :number => FactoryGirl.generate(:number),
+                                    :updated_at => Time.now + 3.hours)
+      @course3 = FactoryGirl.create(:course,
+                                    :number => FactoryGirl.generate(:number),
+                                    :updated_at => Time.now - 6.hours)
+      UserCourseship.create!(user_id: @user.id, course_id: @course1.id)
+      UserCourseship.create!(user_id: @user.id, course_id: @course2.id)
+      UserCourseship.create!(user_id: @user.id, course_id: @course3.id)
+    end
+
+    it "should have the right order by updated_at with DESC" do
+      @user.courses.should == [@course2, @course1, @course3]
+    end
+  end
+
 end

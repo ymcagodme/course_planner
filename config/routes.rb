@@ -8,6 +8,7 @@ CoursePlanner::Application.routes.draw do
   devise_for :users
   resources :users
   resources :courses
+  resources :user_courseships, :only => [:create, :destroy] 
 
 
   # The priority is based upon order of creation:
