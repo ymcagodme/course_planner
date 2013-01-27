@@ -61,5 +61,19 @@ describe Course do
       end
     end
   end
+  
+  describe "relationship with users" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      @course = FactoryGirl.create(:course)
+      @relationship = UserCourseship.create!({ user_id: @user.id, course_id: @course.id })
+    end
+
+    it "should delete the relationship if the course is deleted" do
+      lambda do
+        @course.destroy
+      end.should change(UserCourseship, :count).by(-1)
+    end
+  end
 
 end

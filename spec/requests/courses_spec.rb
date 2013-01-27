@@ -40,4 +40,5 @@ describe "Courses" do
       end
     end
   end
+
 end

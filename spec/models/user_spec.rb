@@ -85,6 +85,12 @@ describe User do
     it "should have the right order by updated_at with DESC" do
       @user.courses.should == [@course2, @course1, @course3]
     end
+
+    it "should delete the relationship if the user is deleted" do
+      lambda do
+        @user.destroy
+      end.should change(UserCourseship, :count).by(-3)
+    end
   end
 
 end

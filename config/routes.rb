@@ -6,7 +6,9 @@ CoursePlanner::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users
-  resources :users
+  resources :users do
+    get 'courses', :on => :member
+  end
   resources :courses
   resources :user_courseships, :only => [:create, :destroy] 
 

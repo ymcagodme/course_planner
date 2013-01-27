@@ -8,11 +8,11 @@
   <% if user_signed_in? %>
     <% if current_user && current_user.following?(course) %>
       <td id="<%= "#{course.id}" %>">
-        <%= render :partial => "unfollow", :locals => {:course => course} %>
+        <%= render :partial => "courses/unfollow", :locals => {:course => course} %>
       </td>
     <% else %>
       <td id="<%= "#{course.id}" %>">
-        <%= render :partial => "follow", :locals => {:course => course} %>
+        <%= render :partial => "courses/follow", :locals => {:course => course} %>
       </td>
     <% end %>
   <% else %>
