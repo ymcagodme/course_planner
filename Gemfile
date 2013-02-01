@@ -37,6 +37,8 @@ gem "figaro", ">= 0.5.0"
 gem "better_errors", ">= 0.2.0", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem 'will_paginate'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 
 group :development do
   gem 'sqlite3'

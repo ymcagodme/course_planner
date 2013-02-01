@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :confirmable, :email_regexp =>  /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
   has_many :user_courseships, :dependent => :delete_all
   has_many :courses, :through => :user_courseships
@@ -38,9 +38,16 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
-  validates :name, :presence => true,
-                   :length => { :minimum => 2, :maximum => 50 }
-  validates_uniqueness_of :name, :email, :case_sensitive => true
+  validates :name,  :presence => true,
+                    :length => { :minimum => 2, :maximum => 50 },
+                    :uniqueness => true
+
+  validates :email, :presence => true,
+                    :format => { with: Devise.email_regexp },
+                    :uniqueness => { case_sensitive: false }                                                   
+
+  validates :password, :confirmation => true
+
 
   def follow!(course)
     user_courseships.create!(:course_id => course.id)
