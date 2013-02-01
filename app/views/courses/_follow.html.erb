@@ -1,5 +1,5 @@
 <%= form_for current_user.user_courseships.build(:course_id => course.id),
-             :remote => true do |f| %>
+                                                 :remote => true do |f| %>
   <%= f.hidden_field :course_id %>
   <%= f.submit 'Follow' %>
 <% end %>

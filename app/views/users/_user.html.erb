@@ -1,15 +1,11 @@
-<div id="role-options-<%= user.id %>" class="modal" style="display: none;">
-  <%= simple_form_for user, :url => user_path(user), :html => {:method => :put, :class => 'form-horizontal' } do |f| %>
-    <div class="modal-header">
-      <a class="close" data-dismiss="modal">&#215;</a>
-      <h3>Change Role</h3>
-    </div>
-    <div class="modal-body">
-      <%= f.input :role_ids, :collection => Role.all, :as => :radio_buttons, :label_method => lambda {|t| t.name.titleize}, :label => false, :item_wrapper_class => 'inline' %>
-    </div>
-    <div class="modal-footer">
-      <%= f.submit "Change Role", :class => "btn" %>
-      <a class="btn" data-dismiss="modal" href="#">Close</a>
-    </div>
-  <% end %>
-</div>
+<tr>
+    <td><%= link_to user.name, user %></td>
+    <td><%= user.email %></td>
+    <td><%= user.created_at.to_date %></td>
+    <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
+    <td>
+      <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
+      <%= render :partial => 'change_role_modal', :locals => {:user => user}  %>
+    </td>
+    <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>
+</tr>

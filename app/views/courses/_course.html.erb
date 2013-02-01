@@ -5,8 +5,9 @@
   <td><%= course.status %></td>
   <td><%= course.available_seats %></td>
   <td><%= course.updated_at.to_time %></td>
+
   <% if user_signed_in? %>
-    <% if current_user && current_user.following?(course) %>
+    <% if current_user.following?(course) %>
       <td id="<%= "#{course.id}" %>">
         <%= render :partial => "courses/unfollow", :locals => {:course => course} %>
       </td>
@@ -19,7 +20,8 @@
     <td><%= link_to 'follow', new_user_session_path,
                               :class => 'btn btn-mini' %></td>
   <% end %>
-  <% if current_user && current_user.has_role?(:admin) %>
+
+  <% if can? :manage, Course %>
     <td><%= link_to 'Edit', edit_course_path(course),
                             :class => 'btn btn-mini' %></td>
     <td><%= link_to 'Delete', course_path(course),
@@ -27,4 +29,5 @@
                               :confirm => "Are you sure?",
                               :class => 'btn btn-mini' %></td>
   <% end %>
+
 </tr>

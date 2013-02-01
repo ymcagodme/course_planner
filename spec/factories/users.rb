@@ -15,6 +15,8 @@ FactoryGirl.define do
   end
 
   factory :admin, :parent => :user do
+    name "admin user"
+    email "admin@foobar.com"
     after(:create) {|user| user.add_role(:admin)}
   end
 end
