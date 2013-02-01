@@ -248,7 +248,7 @@ describe CoursesController do
 
     it "should reject non-admin user" do
       test_sign_in(FactoryGirl.create(:user))
-      get :edit, :id => ''
+      get :edit, :id => @course
       response.should redirect_to(root_path)
     end
 
@@ -283,7 +283,7 @@ describe CoursesController do
 
     it "should deny non-admin user" do
       test_sign_in(FactoryGirl.create(:user))
-      put :update, :id => '', :course => {}
+      put :update, :id => @course, :course => {}
       response.should redirect_to(root_path)
     end
 
