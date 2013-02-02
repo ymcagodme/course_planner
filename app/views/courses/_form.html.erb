@@ -3,6 +3,7 @@
 <%= f.input :title, :required => true %>
 <%= f.input :instructor %>
 <%= f.input :status,
-            :collection => %w[OPEN CLOSE TENTATIVE WAITLIST CANCELLED] %>
+            :collection => Course::VALID_STATUS%>
 <%= f.input :available_seats %>
-<%= f.input :term %>
+<%= f.association :term, :label_method => :name,
+                         :value_method => :id %>

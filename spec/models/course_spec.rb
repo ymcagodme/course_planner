@@ -8,9 +8,9 @@
 #  instructor      :string(255)
 #  status          :string(255)
 #  available_seats :integer          default(0)
-#  term            :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  term_id         :integer
 #
 
 require 'spec_helper'

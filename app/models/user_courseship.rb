@@ -3,8 +3,8 @@
 # Table name: user_courseships
 #
 #  id         :integer          not null, primary key
-#  user_id    :string(255)
-#  course_id  :string(255)
+#  user_id    :integer          not null
+#  course_id  :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

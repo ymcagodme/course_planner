@@ -39,6 +39,8 @@ gem "binding_of_caller", ">= 0.6.8", :group => :development
 gem 'will_paginate'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
+gem 'activeadmin'
+gem "meta_search", '>= 1.1.0.pre'
 
 group :development do
   gem 'sqlite3'

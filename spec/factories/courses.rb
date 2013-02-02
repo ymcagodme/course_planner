@@ -11,6 +11,6 @@ FactoryGirl.define do
     instructor "David Huang"
     status "OPEN"
     available_seats 30
-    term 1131
+    term
   end
 end

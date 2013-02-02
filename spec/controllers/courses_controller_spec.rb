@@ -157,13 +157,14 @@ describe CoursesController do
   describe "POST 'create'" do
 
     before(:each) do
+      @term = FactoryGirl.create(:term)
       @attr = {
         number: '12234',
         title: 'CIS RoR',
         instructor: 'David',
         status: 'OPEN',
         available_seats: '30',
-        term: '1131'
+        term_id: @term.id
       }
     end
 
