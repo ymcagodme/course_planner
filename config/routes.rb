@@ -10,11 +10,10 @@ CoursePlanner::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users
-  resources :users do
-    get 'courses', :on => :member
-  end
-  resources :courses
-  resources :user_courseships, :only => [:create, :destroy] 
+
+  get 'users/:id/courses' => 'users#courses', :as => :my_courses
+  resources :courses, :only => [:index, :show]
+  resources :user_courseships, :only => [:create, :destroy]
 
 
   # The priority is based upon order of creation:

@@ -9,4 +9,5 @@ Gem:
     Setup token fields with many_to_many relationship(Input field with Ajax)
     Undo with Paper Trail
 
+Write the tests for Active admin(all RESTFUL actions)
 
