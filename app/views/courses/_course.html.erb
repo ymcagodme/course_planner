@@ -20,14 +20,4 @@
     <td><%= link_to 'follow', new_user_session_path,
                               :class => 'btn btn-mini' %></td>
   <% end %>
-
-  <% if can? :manage, Course %>
-    <td><%= link_to 'Edit', edit_course_path(course),
-                            :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Delete', course_path(course),
-                              :method => :delete,
-                              :confirm => "Are you sure?",
-                              :class => 'btn btn-mini' %></td>
-  <% end %>
-
 </tr>

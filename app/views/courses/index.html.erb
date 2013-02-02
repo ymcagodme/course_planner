@@ -1,9 +1,6 @@
 <% title "All Courses" %>
 
 <h3>Courses</h3>
-<% if current_user && current_user.has_role?(:admin) %>
-  <%= link_to 'Add a new course', new_course_path, :class => 'btn' %>
-<% end %>
 <div>
 <%= will_paginate @courses %>
 <table class="table table-condensed">
@@ -21,9 +18,7 @@
       </tr>
   </thead>
   <tbody>
-  <% @courses.each do |course| %>
-    <%= render course %>
-  <% end %>
+    <%=  render @courses %>
   </tbody>
 </table>
 <%= will_paginate @courses %>
