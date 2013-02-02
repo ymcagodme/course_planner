@@ -1,9 +1,0 @@
-<%= f.error_notification %>
-<%= f.input :number, :autofocus => true, :required => true %>
-<%= f.input :title, :required => true %>
-<%= f.input :instructor %>
-<%= f.input :status,
-            :collection => Course::VALID_STATUS%>
-<%= f.input :available_seats %>
-<%= f.association :term, :label_method => :name,
-                         :value_method => :id %>
