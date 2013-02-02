@@ -17,7 +17,7 @@ describe Term do
     @attr = {
       code: 1311,
       year: 2013,
-      season: "Spring"
+      season: Term::VALID_SEASON[0]
     }
   end
 
@@ -29,5 +29,11 @@ describe Term do
   it "should respond to name method" do
     term = Term.create!(@attr)
     term.should respond_to(:name)
+  end
+
+  it "should have an unique term code" do
+    Term.create!(@attr)
+    term = Term.new(@attr)
+    term.should_not be_valid
   end
 end

@@ -36,12 +36,12 @@ end
 
 STATUS = %w[OPEN CLOSE TENTATIVE WAITLIST CANCELLED]
 def make_term_and_courses
-  term = Term.create!(code: 1131, year: 2013, season: "spring")
+  term = Term.create!(code: 1131, year: 2013, season: Term::VALID_SEASON[0])
   100.times do |n|
     number = (10000 + 100 * n + Random.rand(0..99)).to_s
     title = Faker::Lorem.sentence(3)
     instructor = Faker::Name.name
-    status = STATUS[Random.rand(0..4)]
+    status = Course::VALID_STATUS[Random.rand(0..4)]
     available_seats = Random.rand(1..30)
     term.courses.create(
       number: number,

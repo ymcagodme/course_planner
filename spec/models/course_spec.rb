@@ -18,13 +18,17 @@ require 'spec_helper'
 describe Course do
   describe "Get all courses" do
     before(:each) do
-      @course = FactoryGirl.create(:course)
+      @term = FactoryGirl.create(:term)
+      @course = FactoryGirl.create(:course, 
+                                   :term => @term)
       @course1 = FactoryGirl.create(:course,
                                     :number => FactoryGirl.generate(:number), 
-                                    :updated_at => Time.now + 2.days)
+                                    :updated_at => Time.now + 2.days,
+                                    :term => @term)
       @course2 = FactoryGirl.create(:course,
                                     :number => FactoryGirl.generate(:number), 
-                                    :updated_at => Time.now + 23.days)
+                                    :updated_at => Time.now + 23.days,
+                                    :term => @term)
     end
 
     it "should have the right order by updated_at with DESC" do

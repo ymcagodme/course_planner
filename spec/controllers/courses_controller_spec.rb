@@ -4,13 +4,8 @@ describe CoursesController do
   render_views
 
   before(:each) do
-    @course = FactoryGirl.create(:course)
-    @course1 = FactoryGirl.create(:course,
-                                  :number => FactoryGirl.generate(:number), 
-                                  :updated_at => Time.now - 2.days)
-    @course2 = FactoryGirl.create(:course,
-                                  :number => FactoryGirl.generate(:number), 
-                                  :updated_at => Time.now - 23.days)
+    @course = FactoryGirl.create(:course,
+                                 :term => @term)
   end
 
   describe "GET 'index'" do
@@ -93,7 +88,7 @@ describe CoursesController do
 
   describe "GET 'show'" do
     it "should be success" do
-      get :show, :id => @course1
+      get :show, :id => @course
       response.should be_success
     end
 
