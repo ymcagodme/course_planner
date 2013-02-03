@@ -3,7 +3,6 @@ Integrate with DataTable
 
 Sending HTML Email
 Setup HTTPS
-Refactor out all admin function in the frontend
 
 Gem:
     Setup token fields with many_to_many relationship(Input field with Ajax)
@@ -11,3 +10,4 @@ Gem:
 
 Write the tests for Active admin(all RESTFUL actions)
 
+Write the rake task to fetch class information
