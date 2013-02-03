@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202222654) do
+ActiveRecord::Schema.define(:version => 20130203210149) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -37,12 +37,25 @@ ActiveRecord::Schema.define(:version => 20130202222654) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.integer  "term_id"
+    t.integer  "department_id"
+    t.string   "code"
   end
 
+  add_index "courses", ["code"], :name => "index_courses_on_code", :unique => true
+  add_index "courses", ["department_id"], :name => "index_courses_on_department_id"
   add_index "courses", ["instructor"], :name => "index_courses_on_instructor"
   add_index "courses", ["number"], :name => "index_courses_on_number"
   add_index "courses", ["status"], :name => "index_courses_on_status"
   add_index "courses", ["term_id"], :name => "index_courses_on_term_id"
+
+  create_table "departments", :force => true do |t|
+    t.string   "abbr"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "departments", ["abbr"], :name => "index_departments_on_abbr"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

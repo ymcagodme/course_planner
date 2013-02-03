@@ -11,6 +11,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  term_id         :integer
+#  department_id   :integer
+#  code            :string(255)
 #
 
 class Course < ActiveRecord::Base
@@ -18,12 +20,14 @@ class Course < ActiveRecord::Base
   has_many :user_courseships, :dependent => :delete_all
   has_many :users, :through => :user_courseships 
   belongs_to :term
+  belongs_to :department
 
-  attr_accessible :number, :title, :instructor, :status, :available_seats, :term_id
+  attr_accessible :number, :title, :instructor, :status, :available_seats, :term_id,
+                  :department_id, :code
 
-  validates_presence_of :number, :title, :status
-  validates_numericality_of :number
-  validates_uniqueness_of :number
+  validates_presence_of :number, :title, :status, :number
+  validates_numericality_of :number, :code
+  validates_uniqueness_of :code
 
   validates :status, :inclusion => {:in => VALID_STATUS}
 

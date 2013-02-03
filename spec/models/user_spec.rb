@@ -69,18 +69,22 @@ describe User do
   describe "relationship with courses" do
     before(:each) do
       @term = FactoryGirl.create(:term)
+      @department = FactoryGirl.create(:department)
       @user = FactoryGirl.create(:user)
       @course1 = FactoryGirl.create(:course,
-                                    :number => FactoryGirl.generate(:number),
-                                    :term => @term)
+                                    :code => FactoryGirl.generate(:code),
+                                    :term => @term,
+                                    :department => @department)
       @course2 = FactoryGirl.create(:course,
-                                    :number => FactoryGirl.generate(:number),
+                                    :code => FactoryGirl.generate(:code),
                                     :updated_at => Time.now + 3.hours,
-                                    :term => @term)
+                                    :term => @term,
+                                    :department => @department)
       @course3 = FactoryGirl.create(:course,
-                                    :number => FactoryGirl.generate(:number),
+                                    :code => FactoryGirl.generate(:code),
                                     :updated_at => Time.now - 6.hours,
-                                    :term => @term)
+                                    :term => @term,
+                                    :department => @department)
       UserCourseship.create!(user_id: @user.id, course_id: @course1.id)
       UserCourseship.create!(user_id: @user.id, course_id: @course2.id)
       UserCourseship.create!(user_id: @user.id, course_id: @course3.id)

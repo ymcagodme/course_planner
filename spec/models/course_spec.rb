@@ -11,6 +11,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  term_id         :integer
+#  department_id   :integer
+#  code            :string(255)
 #
 
 require 'spec_helper'
@@ -19,16 +21,20 @@ describe Course do
   describe "Get all courses" do
     before(:each) do
       @term = FactoryGirl.create(:term)
+      @department = FactoryGirl.create(:department)
       @course = FactoryGirl.create(:course, 
-                                   :term => @term)
+                                   :term => @term,
+                                   :department => @department)
       @course1 = FactoryGirl.create(:course,
-                                    :number => FactoryGirl.generate(:number), 
+                                    :code => FactoryGirl.generate(:code), 
                                     :updated_at => Time.now + 2.days,
-                                    :term => @term)
+                                    :term => @term,
+                                    :department => @department)
       @course2 = FactoryGirl.create(:course,
-                                    :number => FactoryGirl.generate(:number), 
+                                    :code => FactoryGirl.generate(:code), 
                                     :updated_at => Time.now + 23.days,
-                                    :term => @term)
+                                    :term => @term,
+                                    :department => @department)
     end
 
     it "should have the right order by updated_at with DESC" do
@@ -38,7 +44,8 @@ describe Course do
 
   describe "Create" do
     before(:each) do
-      @attr = { number: 10231, 
+      @attr = { code: 10231, 
+                number: 300,
                 title: "CIS RoR",
                 status: "CLOSE"}
     end
@@ -80,4 +87,16 @@ describe Course do
     end
   end
 
+  describe "belongs_to department" do
+    before(:each) do
+      @department = FactoryGirl.create(:department)
+      @course = FactoryGirl.create(:course, 
+                                   :term => @term,
+                                   :department => @department)
+    end
+    it "should respond to department" do
+      @course.should be_respond_to(:department)
+      @course.department.should eq(@department)
+    end
+  end
 end
