@@ -22,7 +22,7 @@ describe CoursesController do
     it "should have an element for each course" do
       get :index
       Course.paginate(:page => 1).each do |course|
-        response.should have_selector('a', :content => course.number.to_s,
+        response.should have_selector('a', :content => course.code.to_s,
                                            :href => course_path(course) )
       end
     end
