@@ -10,7 +10,7 @@ FactoryGirl.define do
     number 300
     title %w(CIS 300 - Ruby on Rails)
     instructor "David Huang"
-    status "OPEN"
+    status "open"
     available_seats 30
     term
     department

@@ -50,6 +50,7 @@ group :development do
   gem 'autotest-rails'
   gem 'annotate', ">=2.5.0"
   gem 'faker'
+  gem 'mechanize'
 end
 
 group :test do

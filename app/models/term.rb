@@ -11,7 +11,7 @@
 #
 
 class Term < ActiveRecord::Base
-  VALID_SEASON = %w[SPRING SUMMER FALL WINTER]
+  VALID_SEASON = %w[spring summer fall winter]
   attr_accessible :code, :year, :season
   has_many :courses
 

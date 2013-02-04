@@ -47,12 +47,12 @@ describe Course do
       @attr = { code: 10231, 
                 number: 300,
                 title: "CIS RoR",
-                status: "CLOSE"}
+                status: "closed"}
     end
 
     describe "failure" do
       it "should not create a course with invalid number" do
-        invalid_course = Course.new(@attr.merge!(number: 'adfs'))
+        invalid_course = Course.new(@attr.merge!(status: 'OPEN'))
         invalid_course.should_not be_valid
       end
 

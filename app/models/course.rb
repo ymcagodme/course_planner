@@ -16,7 +16,9 @@
 #
 
 class Course < ActiveRecord::Base
-  VALID_STATUS = %w[OPEN CLOSE TENTATIVE WAITLIST CANCELLED] 
+  
+  include ActiveModel::Dirty
+  VALID_STATUS = ['closed', 'open', 'wait list', 'tentative', 'stop enrl', 'cancelled']
   has_many :user_courseships, :dependent => :delete_all
   has_many :users, :through => :user_courseships 
   belongs_to :term
@@ -26,7 +28,7 @@ class Course < ActiveRecord::Base
                   :department_id, :code
 
   validates_presence_of :number, :title, :status, :number
-  validates_numericality_of :number, :code
+  # validates_numericality_of :code
   validates_uniqueness_of :code
 
   validates :status, :inclusion => {:in => VALID_STATUS}
