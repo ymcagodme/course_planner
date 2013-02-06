@@ -27,10 +27,10 @@ task :fetch_courses => :environment do
   print "Fetching departments..."
   form.action = 'index.cgi'
   rpage = form.submit
-  print "done\n"
 
   # Fetch out all departments
   extract_departments(rpage)
+  print "done\n"
 
   # Select all departments
   rform = rpage.form
