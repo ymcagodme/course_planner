@@ -104,8 +104,8 @@ def extract_courses(page, department_list, number_list, title_list, term)
   tables = page.search('table')
   tables.each_with_index do |table, index|
     table.css('tr').each do |row|
-      next if row.at_css('td.sess1nbr2').nil?
-      code = row.at_css('td.sess1nbr2').text[/\d{5}/]
+      next if row.css('td').empty?
+      code = row.css('td')[0].text[/\d{5}/]
       next if code.nil?
       seats = row.css("td[title='Available Seats']").text.strip.to_i
       status = row.css('td')[7].text.strip.downcase.gsub(NBSP, " ")
