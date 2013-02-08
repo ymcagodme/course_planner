@@ -125,18 +125,18 @@ def extract_courses(page, department_list, number_list, title_list, term)
         course = Course.where('code = ?', code).first
         if course.nil?
           Course.create!(fields)
-          puts ""
-          puts "Created a new course"
-          puts fields
-          puts "==================================="
+          #puts ""
+          #puts "Created a new course"
+          #puts fields
+          #puts "==================================="
           created_courses += 1
         else
           course.attributes = fields
           if course.changed?
-            puts ""
-            puts "#{course.department.name} #{course.number}(#{course.code}) has changed:"
-            puts "==================================="
-            puts course.changes
+            #puts ""
+            #puts "#{course.department.name} #{course.number}(#{course.code}) has changed:"
+            #puts "==================================="
+            #puts course.changes
             course.save!
             updated_courses += 1
           end
