@@ -1,8 +1,6 @@
 Integrate with DataTable
-          with friendly_id
 
 Sending HTML Email
-Setup HTTPS
 
 Gem:
     Setup token fields with many_to_many relationship(Input field with Ajax)
