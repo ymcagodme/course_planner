@@ -42,6 +42,7 @@ gem 'client_side_validations-simple_form'
 gem 'activeadmin'
 gem "meta_search", '>= 1.1.0.pre'
 gem 'mechanize'
+gem 'friendly_id'
 
 group :development do
   gem 'sqlite3'

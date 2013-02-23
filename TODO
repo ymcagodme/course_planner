@@ -9,5 +9,3 @@ Gem:
     Undo with Paper Trail
 
 Write the tests for Active admin(all RESTFUL actions)
-
-Write the rake task to fetch class information

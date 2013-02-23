@@ -49,4 +49,7 @@ CoursePlanner::Application.configure do
   # Set Default URL for mailer
   config.action_mailer.default_url_options = { :host => 'course_planner.dev' }
 
+  # Turn off HTTPS in Devel mode
+  config.force_ssl = false;
+
 end

@@ -16,11 +16,13 @@
 #
 
 class Course < ActiveRecord::Base
-  
+
   include ActiveModel::Dirty
+  extend FriendlyId
+  friendly_id :code
   VALID_STATUS = ['closed', 'open', 'wait list', 'tentative', 'stop enrl', 'cancelled']
   has_many :user_courseships, :dependent => :delete_all
-  has_many :users, :through => :user_courseships 
+  has_many :users, :through => :user_courseships
   belongs_to :term
   belongs_to :department
 
