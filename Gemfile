@@ -45,10 +45,10 @@ gem 'mechanize'
 gem 'friendly_id'
 
 group :development do
+  gem 'ZenTest'
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'webrat'
-  gem 'ZenTest'
   gem 'autotest-rails'
   gem 'annotate', ">=2.5.0"
   gem 'faker'
